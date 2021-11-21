@@ -2,18 +2,21 @@
 Machine Learning based Semantic Text Classifier using Word Embedding, TfIdf, Support Vector Machines
 
 <p align="center">
-  <img src="assets/showoff.gif" alt="Projelerle Yapay Zeka Ve Bilgisayarlı Gör" height="400px"/><br>
+  <img src="assets/showoff.gif" alt="Projelerle Yapay Zeka Ve Bilgisayarlı Gör" height="300px"/><br>
 </p>
 
 # Used Dataset :
 <p align="center">
-  <img src="assets/dataset.png" alt="Projelerle Yapay Zeka Ve Bilgisayarlı Gör" height="400px"/><br>
+  <img src="assets/dataset.png" alt="Projelerle Yapay Zeka Ve Bilgisayarlı Gör" height="200px"/><br>
 </p>
-I used my own dataset for classification.
-In this dataset;
-- I gathered real comments with crawler.
-- Also fake comments created with my own Tensorflow Based Intuitive Text Generation Library: GaussNet
-- Remember that Label 0 means machine-wrote and Label 1 means human-wrote text.
+I used my own dataset for classification.<br>
+In this dataset ;<br><br>
+<ul>
+  <li>I gathered real comments with crawler.</li>
+  <li>Also fake comments created with my own Tensorflow Based Intuitive Text Generation Library: GaussNet</li>
+  <li>Remember that Label 0 means machine-wrote and Label 1 means human-wrote text.</li>
+</ul>
+
 
 [Click here](https://www.kaggle.com/mitaksoylu/turkish-fakereal-comment-dataset)  to access dataset on Kaggle.
 
