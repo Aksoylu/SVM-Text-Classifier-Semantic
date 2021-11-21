@@ -1,6 +1,6 @@
 
 from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pandas as pd
 import numpy as np
@@ -65,24 +65,24 @@ comments = tfIdf.transform(comments)
 # comments = X | labels = Y
 x_train, x_test, y_train, y_test = train_test_split(comments, labels, test_size=0.2, random_state=0)
 
-# Create instance of LogisticRegression class
-lojistikRegresyon = LogisticRegression() 
+# Create instance of Support Vector Machine with following hyperparameters 
+supportVectorMachine = SVC(C=10, gamma=0.05, kernel="rbf")
 
-# Train LogisticRegression object with .fit()
-lojistikRegresyon.fit(x_train,y_train)
+# Train support Vector Machine object with .fit()
+supportVectorMachine.fit(x_train,y_train)
 
-# Predict randomly selected x_test test vectors with our new trained LogisticRegression model
-y_predicted = lojistikRegresyon.predict(x_test)
+# Predict randomly selected x_test test vectors with our new trained Support Vector Machine model
+y_predicted = supportVectorMachine.predict(x_test)
 
-# Print confusion matrix of binomial LogisticRegression model
-print("confusion matrix: ", confusion_matrix(y_test,y_predicted))
+# Print confusion matrix of binomial v model
+print("confusion matrix: \n", confusion_matrix(y_test,y_predicted))
 
-# Print classification report of binomial LogisticRegression model
+# Print classification report of binomial Support Vector Machine model
 print("accuracy score: ",accuracy_score(y_test,y_predicted))
 
-#Save trained LogisticRegression model as binary
-pickle.dump(lojistikRegresyon, open("bin/trained_lr_model.bin", 'wb'))
-print("Logistic regression model has been trained successfully and saved to disk")
+#Save trained Support Vector Machine model as binary
+pickle.dump(supportVectorMachine, open("bin/trained_svm_model.bin", 'wb'))
+print("Support Vector Machine model has been trained successfully and saved to disk")
 
 #Save trained vectorizer model as binary
 pickle.dump(tfIdf, open("bin/vector_model.bin", 'wb'))

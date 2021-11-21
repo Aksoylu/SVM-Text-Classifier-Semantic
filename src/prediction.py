@@ -1,10 +1,8 @@
 import pickle
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 import numpy as np
-from nltk import word_tokenize
 from nltk.corpus import stopwords
 import re
-from sklearn.feature_extraction.text import TfidfVectorizer
 
 stop_words = set(stopwords.words('turkish'))
 punctuals = ['•', '!', '"', '#', '”', '“', '$', '%', '&', "'", '–', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '…']
@@ -21,11 +19,17 @@ def optimization(text):
 
 text2Predict  = optimization(input("Enter a comment to be classified by ML:"))
 
+# Load trained TfIdf model from disk
 tfIdf = pickle.load(open("bin/vector_model.bin", 'rb'))
-tahminEdilecekMetin_vec = tfIdf.transform([text2Predict])
 
-LogisticRegressionModel = pickle.load(open("bin/trained_lr_model.bin", 'rb'))
-predictionResult = LogisticRegressionModel.predict(tahminEdilecekMetin_vec)
+# Vectorize input text using pre-trained TfIdf model
+text2Predict_vector = tfIdf.transform([text2Predict])
+
+# Load SVM model from disk
+supportVectorMachine = pickle.load(open("bin/trained_svm_model.bin", 'rb'))
+
+# predict with model
+predictionResult = supportVectorMachine.predict(text2Predict_vector)
 
 if(predictionResult == 0):
     print("This comment is classified as machine-wrote")
